@@ -21,7 +21,7 @@ else
             @foreach(var familia in Model)
             {
                 <tr>
-                    <td>@Html.ActionLink("Familia" + familia.Id, "Details", "Familia", new {id = familia.Id}, null)</td>
+                    <td>@Html.ActionLink("Familia " + familia.Id, "Details", "Familia", new {id = familia.Id}, null)</td>
                 </tr>
             }
         </tbody>

@@ -1,0 +1,13 @@
+﻿@model CadastroFamilia.Models.Marido
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Nome</h2>
+
+<ul>
+    <li>Email: @Model.Email</li>
+    <li>Altura: @Model.Altura</li>
+    <li>Nascimento: @Model.Nascimento.ToShortDateString()</li>
+</ul>

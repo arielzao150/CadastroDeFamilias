@@ -123,8 +123,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EsposaController.cs" />
     <Compile Include="Controllers\FamiliaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MaridoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -147,6 +149,10 @@
     <Compile Include="Migrations\201902042308356_AddRequiredProps.cs" />
     <Compile Include="Migrations\201902042308356_AddRequiredProps.Designer.cs">
       <DependentUpon>201902042308356_AddRequiredProps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902050010594_RenamingSomeTables.cs" />
+    <Compile Include="Migrations\201902050010594_RenamingSomeTables.Designer.cs">
+      <DependentUpon>201902050010594_RenamingSomeTables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Esposa.cs" />
@@ -237,6 +243,8 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Familia\Details.cshtml" />
+    <Content Include="Views\Esposa\Details.cshtml" />
+    <Content Include="Views\Marido\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -256,6 +264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902042308356_AddRequiredProps.resx">
       <DependentUpon>201902042308356_AddRequiredProps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902050010594_RenamingSomeTables.resx">
+      <DependentUpon>201902050010594_RenamingSomeTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

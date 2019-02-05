@@ -53,7 +53,11 @@ namespace CadastroFamilia.Controllers
         // GET: Familia/Details/{id}
         public ActionResult Details(int id)
         {
-            var familia = _context.Familias.SingleOrDefault(f => f.Id == id);
+            var familia = _context.Familias
+                .Include("Marido")
+                .Include("Esposa")
+                .Include("Filhos")
+                .SingleOrDefault(f => f.Id == id);
             if (familia == null) return HttpNotFound();
             return View(familia);
         }
