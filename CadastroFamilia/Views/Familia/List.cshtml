@@ -1,0 +1,30 @@
+﻿@model IEnumerable<CadastroFamilia.Models.Familia>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List</h2>
+@if (!Model.Any())
+{
+    <p>Não há nenhuma família cadastrada</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Familia</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var familia in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink("Familia" + familia.Id, "Details", "Familia", new {id = familia.Id}, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

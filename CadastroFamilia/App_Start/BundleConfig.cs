@@ -23,7 +23,7 @@ namespace CadastroFamilia
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-solar.css",
+                      "~/Content/bootstrap.css",
                       "~/Content/site.css"));
         }
     }
