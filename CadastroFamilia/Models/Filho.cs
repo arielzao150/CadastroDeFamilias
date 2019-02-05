@@ -13,6 +13,7 @@ namespace CadastroFamilia.Models
         //public int FamiliaId { get; set; }
         //public Familia Familia { get; set; }
         [Required]
+        [Display(Name = "Data de Nascimento")]
         public DateTime Nascimento { get; set; }
     }
 }

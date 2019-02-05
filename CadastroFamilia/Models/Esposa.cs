@@ -14,9 +14,15 @@ namespace CadastroFamilia.Models
         //public Familia Familia { get; set; }
         [Required]
         public string Email { get; set; }
+
         [Required]
+        [StringLength(255)]
         public string Nome { get; set; }
+
+        [Required]
+        [Display(Name = "Data de Nascimento")]
         public DateTime Nascimento { get; set; }
+
         public float Altura { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CadastroFamilia.Models;
+using CadastroFamilia.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +33,21 @@ namespace CadastroFamilia.Controllers
         // GET: Familia/Criar
         public ActionResult Criar()
         {
-            var familia = new Familia() { Id = 1 };
-            return View(familia);
+            var familiaVM = new CriarFamiliaViewModel()
+            {
+                Familia = new Familia()
+            };
+            return View(familiaVM);
+        }
+
+        // POST: Familia/Cadastra
+        [HttpPost]
+        public ActionResult Cadastra(CriarFamiliaViewModel viewModel)
+        {
+            _context.Familias.Add(viewModel.Familia);
+            _context.SaveChanges();
+
+            return RedirectToAction("List","Familia");
         }
 
         // GET: Familia/Search
