@@ -63,6 +63,9 @@
         }
         else
         {
+            @Html.LabelFor(m => m.Familia.Filhos[0].Nome)
+            @Html.TextBoxFor(m => m.Familia.Filhos[0].Nome, new { @class = "form-control" })
+
             @Html.LabelFor(m => m.Familia.Filhos[0].Nascimento)
             @Html.EditorFor(m => m.Familia.Filhos[0].Nascimento, new { htmlAttributes = new { @Value = @Model.Familia.Filhos[0].Nascimento.ToString("yyyy-MM-dd"), @class = "form-control" } })
         }

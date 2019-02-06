@@ -10,8 +10,10 @@ namespace CadastroFamilia.Models
     public class Filho
     {
         public int Id { get; set; }
-        //public int FamiliaId { get; set; }
-        //public Familia Familia { get; set; }
+
+        [Required]
+        public string Nome { get; set; }
+
         [Required]
         [Display(Name = "Data de Nascimento")]
         public DateTime Nascimento { get; set; }
