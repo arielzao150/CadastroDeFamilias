@@ -11,25 +11,21 @@
     <div id="esposa">
         <h4>@Html.LabelFor(m => m.Familia.Esposa)</h4>
         <div class="form-group">
-            <br />
             @Html.LabelFor(m => m.Familia.Esposa.Nome)
             @Html.TextBoxFor(m => m.Familia.Esposa.Nome, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Familia.Esposa.Nome)
         </div>
         <div class="form-group">
-            <br />
             @Html.LabelFor(m => m.Familia.Esposa.Email)
             @Html.TextBoxFor(m => m.Familia.Esposa.Email, new { @type = "email", placeholder = "esposa@email.com", @class = "form-control" })
         </div>
         <div class="form-group">
-            <br />
             @Html.LabelFor(m => m.Familia.Esposa.Nascimento)
-            @Html.TextBoxFor(m => m.Familia.Esposa.Nascimento, "{0:d MMM yyyy}",
-           new { @class = "form-control datepicker" })
+            @Html.EditorFor(m => m.Familia.Esposa.Nascimento,
+           new { htmlAttributes = new { @Value = @Model.Familia.Esposa.Nascimento.ToString("yyyy-MM-dd"), @class = "form-control" } })
             @*new { @type = "date", @class = "form-control datepicker", @Value = @Model.Familia.Esposa.Nascimento.ToString() })*@
         </div>
         <div class="form-group">
-            <br />
             @Html.LabelFor(m => m.Familia.Esposa.Altura)
             @Html.TextBoxFor(m => m.Familia.Esposa.Altura, new { @type = "text", @pattern = "[0-9],[0-9]{2}", @placeholder = "0,00", @class = "form-control" })
         </div>
@@ -38,23 +34,21 @@
     <div id="marido">
         <h4>@Html.LabelFor(m => m.Familia.Marido)</h4>
         <div class="form-group">
-            <br />
             @Html.LabelFor(m => m.Familia.Marido.Nome)
             @Html.TextBoxFor(m => m.Familia.Marido.Nome, new { @class = "form-control" })
+            @*<input class="form-control" data-val="true" data-val-length="O campo Nome deve ser uma cadeia de caracteres com um comprimento máximo de 255." data-val-length-max="255" data-val-required="O campo Nome é obrigatório." name="Familia.Marido.Nome" type="text" value="" />*@
+
         </div>
         <div class="form-group">
-            <br />
             @Html.LabelFor(m => m.Familia.Marido.Email)
             @Html.TextBoxFor(m => m.Familia.Marido.Email, new { @type = "email", placeholder = "marido@email.com", @class = "form-control" })
         </div>
         <div class="form-group">
-            <br />
             @Html.LabelFor(m => m.Familia.Marido.Nascimento)
-            @Html.TextBoxFor(m => m.Familia.Marido.Nascimento,
-           new { @type = "date", @class = "form-control datepicker" })
+            @Html.EditorFor(m => m.Familia.Marido.Nascimento,
+           new { htmlAttributes = new { @Value = @Model.Familia.Marido.Nascimento.ToString("yyyy-MM-dd"), @class = "form-control" } })
         </div>
         <div class="form-group">
-            <br />
             @Html.LabelFor(m => m.Familia.Marido.Altura)
             @Html.TextBoxFor(m => m.Familia.Marido.Altura, new { @type = "text", @pattern = "[0-9],[0-9]{2}", @placeholder = "0,00", @class = "form-control" })
         </div>
@@ -63,12 +57,19 @@
         @*TODO: FILHOS*@
 
         <h4>@Html.LabelFor(m => m.Familia.Filhos)</h4>
-
+        @if (Model.Familia.Filhos.Count == 0)
+        {
+            <p>Esta família ainda não possui filhos</p>
+        }
+        else
+        {
+            @Html.LabelFor(m => m.Familia.Filhos[0].Nascimento)
+            @Html.EditorFor(m => m.Familia.Filhos[0].Nascimento, new { htmlAttributes = new { @Value = @Model.Familia.Filhos[0].Nascimento.ToString("yyyy-MM-dd"), @class = "form-control" } })
+        }
         @*Botão para adicionar filhos que adiciona campos ao formulário dinamicamente*@
-        <p class = "btn btn-secondary" id = "btnAddFilho" >Adicionar Filho</p>
+        <button type="button" class="btn btn-secondary" id="btnAddFilho">Adicionar Filho</button>
 
     </div>
     @Html.HiddenFor(m => @Model.Familia.Id)
     <button type="submit" class="btn btn-primary">Salvar</button>
-
 }
