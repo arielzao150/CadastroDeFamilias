@@ -158,6 +158,10 @@
     <Compile Include="Migrations\201902052159435_LimitNomes.Designer.cs">
       <DependentUpon>201902052159435_LimitNomes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902062318569_MigrationTeste.cs" />
+    <Compile Include="Migrations\201902062318569_MigrationTeste.Designer.cs">
+      <DependentUpon>201902062318569_MigrationTeste.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Esposa.cs" />
     <Compile Include="Models\Familia.cs" />
@@ -276,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902052159435_LimitNomes.resx">
       <DependentUpon>201902052159435_LimitNomes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902062318569_MigrationTeste.resx">
+      <DependentUpon>201902062318569_MigrationTeste.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
