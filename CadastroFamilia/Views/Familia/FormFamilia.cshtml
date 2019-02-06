@@ -9,7 +9,7 @@
 @using (Html.BeginForm("Salva", "Familia"))
 {
     <div id="esposa">
-        @Html.LabelFor(m => m.Familia.Esposa)
+        <h4>@Html.LabelFor(m => m.Familia.Esposa)</h4>
         <div class="form-group">
             <br />
             @Html.LabelFor(m => m.Familia.Esposa.Nome)
@@ -19,24 +19,24 @@
         <div class="form-group">
             <br />
             @Html.LabelFor(m => m.Familia.Esposa.Email)
-            @Html.TextBoxFor(m => m.Familia.Esposa.Email, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Familia.Esposa.Email, new { @type = "email", placeholder = "esposa@email.com", @class = "form-control" })
         </div>
         <div class="form-group">
             <br />
             @Html.LabelFor(m => m.Familia.Esposa.Nascimento)
             @Html.TextBoxFor(m => m.Familia.Esposa.Nascimento, "{0:d MMM yyyy}",
-           new { @class = "form-control datepicker"})
-       @*new { @type = "date", @class = "form-control datepicker", @Value = @Model.Familia.Esposa.Nascimento.ToString() })*@
+           new { @class = "form-control datepicker" })
+            @*new { @type = "date", @class = "form-control datepicker", @Value = @Model.Familia.Esposa.Nascimento.ToString() })*@
         </div>
         <div class="form-group">
             <br />
             @Html.LabelFor(m => m.Familia.Esposa.Altura)
-            @Html.TextBoxFor(m => m.Familia.Esposa.Altura, new { @type = "text", @pattern = "[0-9],[0-9]{2}", @Value = "0,00", @class = "form-control" })
+            @Html.TextBoxFor(m => m.Familia.Esposa.Altura, new { @type = "text", @pattern = "[0-9],[0-9]{2}", @placeholder = "0,00", @class = "form-control" })
         </div>
     </div>
 
     <div id="marido">
-        @Html.LabelFor(m => m.Familia.Marido)
+        <h4>@Html.LabelFor(m => m.Familia.Marido)</h4>
         <div class="form-group">
             <br />
             @Html.LabelFor(m => m.Familia.Marido.Nome)
@@ -45,7 +45,7 @@
         <div class="form-group">
             <br />
             @Html.LabelFor(m => m.Familia.Marido.Email)
-            @Html.TextBoxFor(m => m.Familia.Marido.Email, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Familia.Marido.Email, new { @type = "email", placeholder = "marido@email.com", @class = "form-control" })
         </div>
         <div class="form-group">
             <br />
@@ -56,17 +56,19 @@
         <div class="form-group">
             <br />
             @Html.LabelFor(m => m.Familia.Marido.Altura)
-            @Html.TextBoxFor(m => m.Familia.Marido.Altura, new { @type = "text", @pattern = "[0-9],[0-9]{2}", @Value = "0,00", @class = "form-control" })
+            @Html.TextBoxFor(m => m.Familia.Marido.Altura, new { @type = "text", @pattern = "[0-9],[0-9]{2}", @placeholder = "0,00", @class = "form-control" })
         </div>
     </div>
     <div id="filhos">
         @*TODO: FILHOS*@
 
-        @Html.LabelFor(m => m.Familia.Filhos)
-        
+        <h4>@Html.LabelFor(m => m.Familia.Filhos)</h4>
+
         @*Botão para adicionar filhos que adiciona campos ao formulário dinamicamente*@
+        <p class = "btn btn-secondary" id = "btnAddFilho" >Adicionar Filho</p>
 
     </div>
     @Html.HiddenFor(m => @Model.Familia.Id)
     <button type="submit" class="btn btn-primary">Salvar</button>
+
 }
