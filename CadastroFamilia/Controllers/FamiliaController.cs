@@ -33,21 +33,31 @@ namespace CadastroFamilia.Controllers
         // GET: Familia/Criar
         public ActionResult Criar()
         {
-            var familiaVM = new CriarFamiliaViewModel()
+            var familiaVM = new FormFamiliaViewModel()
             {
                 Familia = new Familia()
             };
-            return View(familiaVM);
+            return View("FormFamilia", familiaVM);
         }
 
-        // POST: Familia/Cadastra
+        // POST: Familia/Salva
         [HttpPost]
-        public ActionResult Cadastra(CriarFamiliaViewModel viewModel)
+        public ActionResult Salva(Familia familia)
         {
-            _context.Familias.Add(viewModel.Familia);
+            if (!ModelState.IsValid)
+                return View("FormFamilia");
+            if (familia.Id == 0)
+                _context.Familias.Add(familia);
+            else
+            {
+                var familiaUpdate = _context.Familias.Single(f => f.Id == familia.Id);
+                familiaUpdate.Marido = familia.Marido;
+                familiaUpdate.Esposa = familia.Esposa;
+                familiaUpdate.Filhos = familia.Filhos;
+            }
             _context.SaveChanges();
 
-            return RedirectToAction("List","Familia");
+            return RedirectToAction("List", "Familia");
         }
 
         // GET: Familia/Search
@@ -73,7 +83,26 @@ namespace CadastroFamilia.Controllers
                 .Include("Filhos")
                 .SingleOrDefault(f => f.Id == id);
             if (familia == null) return HttpNotFound();
+
             return View(familia);
+        }
+
+        // GET: Familia/Edit/{id}
+        public ActionResult Edit(int id)
+        {
+            var familia = _context.Familias
+                .Include("Marido")
+                .Include("Esposa")
+                .Include("Filhos")
+                .SingleOrDefault(f => f.Id == id);
+            if (familia == null) return HttpNotFound();
+
+            var familiaVM = new FormFamiliaViewModel
+            {
+                Familia = familia
+            };
+
+            return View("FormFamilia", familiaVM);
         }
 
         private IEnumerable<Familia> GetFamilias()

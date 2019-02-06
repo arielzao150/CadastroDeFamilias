@@ -10,4 +10,5 @@
     <li>Email: @Model.Email</li>
     <li>Altura: @Model.Altura</li>
     <li>Nascimento: @Model.Nascimento.ToShortDateString()</li>
+    <li><button type="submit" class="btn btn-primary">@Html.ActionLink("Editar", "Edit", "Marido", new { id = Model.Id }, null)</button></li>
 </ul>

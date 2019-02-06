@@ -36,5 +36,14 @@ namespace CadastroFamilia.Controllers
             if (marido == null) return HttpNotFound();
             return View(marido);
         }
+
+        // GET: Marido/Edit/{id}
+        public ActionResult Edit(int id)
+        {
+            var marido = _context.Maridos
+                .SingleOrDefault(m => m.Id == id);
+            if (marido == null) return HttpNotFound();
+            return View(marido);
+        }
     }
 }

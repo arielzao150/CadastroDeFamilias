@@ -7,7 +7,12 @@
 <h2>Familia @Model.Id</h2>
 
 <ul>
-    <li>Esposa: @Html.ActionLink(@Model.Esposa.Nome, "Details", "Esposa", new {id = Model.Esposa.Id}, null)</li>
+    <li>Esposa: @Html.ActionLink(@Model.Esposa.Nome, "Details", "Esposa", new { id = Model.Esposa.Id }, null)</li>
     <li>Marido: @Html.ActionLink(@Model.Marido.Nome, "Details", "Marido", new { id = Model.Marido.Id }, null)</li>
     <li>Qnt filhos: @Model.Filhos.Count</li>
+    @*@foreach(var filho in @Model.Filhos)
+        {
+            MOSTRA OS FILHOS
+        }*@
 </ul>
+@Html.ActionLink("Editar", "Edit", "Familia", new { id = Model.Id }, null)

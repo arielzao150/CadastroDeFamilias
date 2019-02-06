@@ -6,7 +6,7 @@ using System.Web;
 
 namespace CadastroFamilia.ViewModels
 {
-    public class CriarFamiliaViewModel
+    public class FormFamiliaViewModel
     {
         public Familia Familia { get; set; }
     }
