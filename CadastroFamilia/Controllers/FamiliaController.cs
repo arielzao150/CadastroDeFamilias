@@ -36,6 +36,15 @@ namespace CadastroFamilia.Controllers
             var familiaVM = new FormFamiliaViewModel()
             {
                 Familia = new Familia()
+                {
+                    Esposa = new Esposa(),
+                    Marido = new Marido(),
+                    Filhos = new List<Filho>()
+                    {
+                        new Filho(),
+                        new Filho()
+                    }
+                }
             };
             return View("FormFamilia", familiaVM);
         }

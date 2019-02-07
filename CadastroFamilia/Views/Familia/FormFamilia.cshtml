@@ -63,16 +63,31 @@
         }
         else
         {
-            @Html.LabelFor(m => m.Familia.Filhos[0].Nome)
-            @Html.TextBoxFor(m => m.Familia.Filhos[0].Nome, new { @class = "form-control" })
-
-            @Html.LabelFor(m => m.Familia.Filhos[0].Nascimento)
-            @Html.EditorFor(m => m.Familia.Filhos[0].Nascimento, new { htmlAttributes = new { @Value = @Model.Familia.Filhos[0].Nascimento.ToString("yyyy-MM-dd"), @class = "form-control" } })
+            foreach (var filho in Model.Familia.Filhos)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => filho.Nome)
+                    @Html.TextBoxFor(m => filho.Nome, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => filho.Nascimento)
+                    @Html.EditorFor(m => filho.Nascimento, new { htmlAttributes = new { @Value = filho.Nascimento.ToString("yyyy-MM-dd"), @class = "form-control" } })
+                </div>
+            }
         }
         @*Botão para adicionar filhos que adiciona campos ao formulário dinamicamente*@
-        <button type="button" class="btn btn-secondary" id="btnAddFilho">Adicionar Filho</button>
+        <button type="button" class="btn btn-secondary" id="btnAddFilho" onclick="addFilho()">Adicionar Filho</button>
 
     </div>
     @Html.HiddenFor(m => @Model.Familia.Id)
     <button type="submit" class="btn btn-primary">Salvar</button>
 }
+
+<script>
+    function addFilho() {
+        @{ 
+            Model.Familia.Filhos.Add(new CadastroFamilia.Models.Filho());
+        }
+        console.log("passou");
+    }
+</script>
