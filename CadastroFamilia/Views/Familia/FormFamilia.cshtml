@@ -3,13 +3,12 @@
     ViewBag.Title = "Cadastro de Familia";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h3>Criando Familia</h3>
 
 @using (Html.BeginForm("Salva", "Familia"))
 {
     <div id="esposa">
-        <h4>@Html.LabelFor(m => m.Familia.Esposa)</h4>
+        <h2>@Html.LabelFor(m => m.Familia.Esposa)</h2>
         <div class="form-group">
             @Html.LabelFor(m => m.Familia.Esposa.Nome)
             @Html.TextBoxFor(m => m.Familia.Esposa.Nome, new { @class = "form-control" })
@@ -32,7 +31,7 @@
     </div>
 
     <div id="marido">
-        <h4>@Html.LabelFor(m => m.Familia.Marido)</h4>
+        <h2>@Html.LabelFor(m => m.Familia.Marido)</h2>
         <div class="form-group">
             @Html.LabelFor(m => m.Familia.Marido.Nome)
             @Html.TextBoxFor(m => m.Familia.Marido.Nome, new { @class = "form-control" })
@@ -56,38 +55,56 @@
     <div id="filhos">
         @*TODO: FILHOS*@
 
-        <h4>@Html.LabelFor(m => m.Familia.Filhos)</h4>
+        <h2>@Html.LabelFor(m => m.Familia.Filhos)</h2>
         @if (Model.Familia.Filhos.Count == 0)
         {
-            <p>Esta família ainda não possui filhos</p>
+            <div id="nao-tem-filhos">
+                <p>Esta família ainda não possui filhos</p>
+            </div>
         }
         else
         {
-            for(int i = 0; i < Model.Familia.Filhos.Count; i++)
+            for (int i = 0; i < Model.Familia.Filhos.Count; i++)
             {
-                <div class="form-group">
-                    @Html.LabelFor(m => Model.Familia.Filhos[i].Nome)
-                    @Html.TextBoxFor(m => Model.Familia.Filhos[i].Nome, new { @class = "form-control" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => Model.Familia.Filhos[i].Nascimento)
-                    @Html.EditorFor(m => Model.Familia.Filhos[i].Nascimento, new { htmlAttributes = new { @Value = Model.Familia.Filhos[i].Nascimento.ToString("yyyy-MM-dd"), @class = "form-control" } })
+                <div id="filho-@i">
+                    <div class="form-group">
+                        @Html.LabelFor(m => Model.Familia.Filhos[i].Nome)
+                        @Html.TextBoxFor(m => Model.Familia.Filhos[i].Nome, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => Model.Familia.Filhos[i].Nascimento)
+                        @Html.EditorFor(m => Model.Familia.Filhos[i].Nascimento, new { htmlAttributes = new { @Value = Model.Familia.Filhos[i].Nascimento.ToString("yyyy-MM-dd"), @class = "form-control" } })
+                    </div>
                 </div>
             }
         }
+    </div>
+    <div id="botao-add-filho">
         @*Botão para adicionar filhos que adiciona campos ao formulário dinamicamente*@
         <button type="button" class="btn btn-secondary" id="btnAddFilho" onclick="addFilho()">Adicionar Filho</button>
-
     </div>
     @Html.HiddenFor(m => @Model.Familia.Id)
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <div id="botao-salvar">
+        <button type="submit" class="btn btn-primary btn-border" style="margin-top: 3px;">Salvar</button>
+    </div>
 }
 
 <script>
     function addFilho() {
-        @{ 
-            Model.Familia.Filhos.Add(new CadastroFamilia.Models.Filho());
-        }
+        $('#nao-tem-filhos').hide();
+        var contador = $('.filho').length
+        var elemento = '<h4>Filho ' + (contador+1) + '</h4>\
+    <div id="filho-' + contador + '" class="filho">\
+                    <div class="form-group">\
+                        <label for="Familia_Filhos_' + contador + '__Nome">Nome</label>\
+                        <input class="form-control" data-val="true" data-val-required="O campo Nome é obrigatório." id="Familia_Filhos_' + contador + '__Nome" name="Familia.Filhos[0].Nome" type="text" value="">\
+                    </div>\
+                    <div class="form-group">\
+                        <label for="Familia_Filhos_' + contador + '__Nascimento">Data de Nascimento</label>\
+                        <input value="0001-01-01" class="form-control text-box single-line" data-val="true" data-val-date="O campo Data de Nascimento deve ser uma data." data-val-required="O campo Data de Nascimento é obrigatório." id="Familia_Filhos_' + contador + '__Nascimento" name="Familia.Filhos[' + contador + '].Nascimento" type="datetime">\
+                    </div>\
+                </div>';
+        $('#filhos').append(elemento);
         console.log("passou");
     }
 </script>
