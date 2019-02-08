@@ -93,11 +93,11 @@
     function addFilho() {
         $('#nao-tem-filhos').hide();
         var contador = $('.filho').length
-        var elemento = '<h4>Filho ' + (contador+1) + '</h4>\
+        var elemento = '<h4>Filho ' + (contador + 1) + '</h4>\
     <div id="filho-' + contador + '" class="filho">\
                     <div class="form-group">\
                         <label for="Familia_Filhos_' + contador + '__Nome">Nome</label>\
-                        <input class="form-control" data-val="true" data-val-required="O campo Nome é obrigatório." id="Familia_Filhos_' + contador + '__Nome" name="Familia.Filhos[0].Nome" type="text" value="">\
+                        <input class="form-control" data-val="true" data-val-required="O campo Nome é obrigatório." id="Familia_Filhos_' + contador + '__Nome" name="Familia.Filhos[' + contador + '].Nome" type="text" value="">\
                     </div>\
                     <div class="form-group">\
                         <label for="Familia_Filhos_' + contador + '__Nascimento">Data de Nascimento</label>\
