@@ -63,15 +63,15 @@
         }
         else
         {
-            foreach (var filho in Model.Familia.Filhos)
+            for(int i = 0; i < Model.Familia.Filhos.Count; i++)
             {
                 <div class="form-group">
-                    @Html.LabelFor(m => filho.Nome)
-                    @Html.TextBoxFor(m => filho.Nome, new { @class = "form-control" })
+                    @Html.LabelFor(m => Model.Familia.Filhos[i].Nome)
+                    @Html.TextBoxFor(m => Model.Familia.Filhos[i].Nome, new { @class = "form-control" })
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => filho.Nascimento)
-                    @Html.EditorFor(m => filho.Nascimento, new { htmlAttributes = new { @Value = filho.Nascimento.ToString("yyyy-MM-dd"), @class = "form-control" } })
+                    @Html.LabelFor(m => Model.Familia.Filhos[i].Nascimento)
+                    @Html.EditorFor(m => Model.Familia.Filhos[i].Nascimento, new { htmlAttributes = new { @Value = Model.Familia.Filhos[i].Nascimento.ToString("yyyy-MM-dd"), @class = "form-control" } })
                 </div>
             }
         }
