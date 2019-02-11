@@ -1,4 +1,6 @@
-﻿using CadastroFamilia.Models;
+﻿using AutoMapper;
+using CadastroFamilia.DTOs;
+using CadastroFamilia.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,38 +20,40 @@ namespace CadastroFamilia.Controllers.API
         }
 
         // GET /api/familias
-        public IEnumerable<Familia> GetFamilias()
+        public IEnumerable<FamiliaDto> GetFamilias()
         {
-            return _context.Familias.ToList();
+            return _context.Familias.ToList().Select(Mapper.Map<Familia, FamiliaDto>);
         }
 
         // GET /api/familias/1
-        public Familia GetFamilia(int id)
+        public FamiliaDto GetFamilia(int id)
         {
             var familia = _context.Familias.SingleOrDefault(f => f.Id == id);
 
             if (familia == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            return familia;
+            return Mapper.Map<Familia, FamiliaDto>(familia);
         }
 
         // POST /api/familias/1
         [HttpPost]
-        public Familia CreateFamilia(Familia familia)
+        public FamiliaDto CreateFamilia(FamiliaDto familiaDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
+            var familia = Mapper.Map<FamiliaDto, Familia>(familiaDto);
             _context.Familias.Add(familia);
             _context.SaveChanges();
 
-            return familia;
+            familiaDto.Id = familia.Id;
+            return familiaDto;
         }
 
         // PUT /api/familias/1
         [HttpPut]
-        public void UpdateFamilia(int id, Familia familiaToUpdate)
+        public void UpdateFamilia(int id, FamiliaDto familiaToUpdate)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -58,7 +62,7 @@ namespace CadastroFamilia.Controllers.API
             if (familia == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            // TODO
+            Mapper.Map(familiaToUpdate, familia);
 
             _context.SaveChanges();
         }
