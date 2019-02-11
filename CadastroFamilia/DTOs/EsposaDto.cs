@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace CadastroFamilia.Models
+namespace CadastroFamilia.DTOs
 {
-    public class Marido
+    public class EsposaDto
     {
         public int Id { get; set; }
-        
+
         [Required]
         public string Email { get; set; }
 
@@ -19,10 +18,8 @@ namespace CadastroFamilia.Models
         public string Nome { get; set; }
 
         [Required]
-        [Display(Name = "Data de Nascimento")]
         public DateTime Nascimento { get; set; }
 
         public float Altura { get; set; }
-        // FOTO
     }
 }

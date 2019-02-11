@@ -10,8 +10,7 @@ namespace CadastroFamilia.Models
     public class Esposa
     {
         public int Id { get; set; }
-        //public int FamiliaId { get; set; }
-        //public Familia Familia { get; set; }
+
         [Required]
         public string Email { get; set; }
 
