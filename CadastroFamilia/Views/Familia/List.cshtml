@@ -37,6 +37,8 @@ else
 {
     <script>
         $(document).ready(function () {
+            $("#familias").DataTable();
+
             $("#familias").on("click", ".js-delete", function () {
                 var button = $(this);
                 bootbox.confirm("Tem certeza que deseja deletar esta familia?", function (result) {
