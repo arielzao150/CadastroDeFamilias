@@ -38,17 +38,17 @@ namespace CadastroFamilia.Controllers.API
 
         // POST /api/familias/1
         [HttpPost]
-        public FamiliaDto CreateFamilia(FamiliaDto familiaDto)
+        public IHttpActionResult CreateFamilia(FamiliaDto familiaDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var familia = Mapper.Map<FamiliaDto, Familia>(familiaDto);
             _context.Familias.Add(familia);
             _context.SaveChanges();
 
             familiaDto.Id = familia.Id;
-            return familiaDto;
+            return Created(new Uri(Request.RequestUri + "/"+familia.Id), familiaDto);
         }
 
         // PUT /api/familias/1

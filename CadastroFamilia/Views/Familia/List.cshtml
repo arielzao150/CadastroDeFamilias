@@ -12,10 +12,11 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table id="familias" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Familia</th>
+                <th>Deletar</th>
             </tr>
         </thead>
         <tbody>
@@ -23,9 +24,31 @@ else
             {
                 <tr>
                     <td>@Html.ActionLink("Familia " + familia.Id, "Details", "Familia", new { id = familia.Id }, null)</td>
+                    <td>
+                        <button data-familia-id="@familia.Id" class="btn-link js-delete">Deletar</button>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 }
 
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#familias .js-delete").on("click", function () {
+                var button = $(this);
+                if (confirm("Tem certeza que deseja deletar esta familia?")) {
+                    $.ajax({
+                        url: "api/familias/" + button.attr("data-familia-id"),
+                        method: "DELETE",
+                        sucess: function () {
+                            button.parents("tr").remove();
+                        }
+                    })
+                }
+            });
+        });
+    </script>
+}
