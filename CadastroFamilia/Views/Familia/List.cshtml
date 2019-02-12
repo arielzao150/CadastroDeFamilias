@@ -37,17 +37,19 @@ else
 {
     <script>
         $(document).ready(function () {
-            $("#familias .js-delete").on("click", function () {
+            $("#familias").on("click", ".js-delete", function () {
                 var button = $(this);
-                if (confirm("Tem certeza que deseja deletar esta familia?")) {
-                    $.ajax({
-                        url: "api/familias/" + button.attr("data-familia-id"),
-                        method: "DELETE",
-                        sucess: function () {
-                            button.parents("tr").remove();
-                        }
-                    })
-                }
+                bootbox.confirm("Tem certeza que deseja deletar esta familia?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/familias/" + button.attr("data-familia-id"),
+                            method: "DELETE",
+                            sucess: function () {
+                                button.parents("tr").remove();
+                            }
+                        })
+                    }
+                });
             });
         });
     </script>
